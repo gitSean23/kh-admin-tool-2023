@@ -1,4 +1,6 @@
+import Link from "next/link";
 import { CreateHackathonButton } from "./CreateHackathonButton";
+import { HackathonTable } from "./HackathonTable";
 
 export const metadata = {
   title: "Home",
@@ -51,12 +53,13 @@ export default function Home() {
           <div className="text-4xl font-bold">Welcome, {username}.</div>
         </div>
 
-        <a href="/analytics">
-          <button className="flex h-11 items-center gap-2 whitespace-nowrap rounded-lg border bg-[#fbfbfb] px-5 font-bold text-[#4b4b4b]">
-            <HackathonAnalyticsIcon />
-            <div>Hackathon Analytics</div>
-          </button>
-        </a>
+        <Link
+          href="/analytics"
+          className="flex h-11 items-center gap-2 whitespace-nowrap rounded-lg border bg-[#fbfbfb] px-5 font-bold text-[#4b4b4b]"
+        >
+          <HackathonAnalyticsIcon />
+          <div>Hackathon Analytics</div>
+        </Link>
       </div>
 
       <div className="mt-7 text-2xl font-semibold text-[#a4a4a4]">
@@ -67,12 +70,14 @@ export default function Home() {
         <div className="text-2xl font-bold text-[#4b4b4b]">Fall 2022</div>
         <div className="mt-3 flex flex-wrap gap-4">
           {links.map(({ route, buttonText }) => (
-            <a key={route} href={route}>
-              <button className="flex h-11 items-center gap-2 rounded-lg border px-5 font-bold   text-[#4b4b4b]">
-                <Arrow />
-                {buttonText}
-              </button>
-            </a>
+            <Link
+              key={route}
+              href={route}
+              className="flex h-11 items-center gap-2 rounded-lg border px-5 font-bold text-[#4b4b4b]"
+            >
+              <Arrow />
+              {buttonText}
+            </Link>
           ))}
         </div>
       </div>
@@ -85,7 +90,7 @@ export default function Home() {
       </div>
 
       {/* Table Component */}
-      {/* <HomeTable /> */}
+      <HackathonTable />
     </div>
   );
 }
