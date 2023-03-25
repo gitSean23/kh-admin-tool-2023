@@ -3,8 +3,6 @@ import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
-("use client");
-
 import { Menu, Transition } from "@headlessui/react";
 import { UserCircleIcon } from "@heroicons/react/20/solid";
 import { Fragment } from "react";
