@@ -25,7 +25,7 @@ const columns = [
   columnHelper.accessor("sponsors", {
     header: "Sponsors",
     cell: (info) => info.getValue().length,
-    footer: "Attendees",
+    footer: "Sponsors",
   }),
 ];
 

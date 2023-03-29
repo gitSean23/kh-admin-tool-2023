@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { CreateHackathonButton } from "./CreateHackathonButton";
-import { HackathonTable } from "./HackathonTable";
+import { HackathonTable } from "./HackathonsTable";
 
 export const metadata = {
   title: "Home",
@@ -39,7 +39,7 @@ export default function Home() {
 
   const links = [
     { route: "/hackathon", buttonText: "Go to Hackathon" },
-    { route: "/attendees", buttonText: "Attendees" },
+    { route: "/hackers", buttonText: "Hackers" },
     { route: "/sponsors", buttonText: "Sponsors" },
     { route: "/schedule", buttonText: "Schedule" },
   ];

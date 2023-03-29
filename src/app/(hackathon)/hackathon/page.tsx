@@ -1,3 +1,3 @@
 export default function Hackathon() {
-  return <div>Hello, World!</div>;
+  return <div className="px-10">Hello, World!</div>;
 }
