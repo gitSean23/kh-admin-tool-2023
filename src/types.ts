@@ -1,20 +1,50 @@
 export type Attendee = {
-  id?: string;
-  firstName?: string;
-  lastName?: string;
-  email?: string;
-  phoneNumber?: string;
-  pronouns?: Pronouns;
-  age?: number;
-  role?: string;
-  oAuth?: string;
-  isAccepted?: boolean;
-  isConfirmed?: boolean;
-  isCheckedIn?: boolean;
-  discord?: string;
-  userLink?: string;
-  school?: string;
+  id: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  phoneNumber: string;
+  pronouns: Pronouns;
+  age: number;
+  role: string;
+  oAuth: string;
+  isAccepted: boolean;
+  isConfirmed: boolean;
+  isCheckedIn: boolean;
+  discord: string;
+  userLink: string;
+  school: string;
 };
+
+// Generate dummy attendees
+
+export function generateAttendees(): Attendee[] {
+  let attendees: Attendee[] = [];
+  for (let i = 0; i < 10; i++) {
+    attendees.push({
+      id: (i + 1).toString(),
+      firstName: "John",
+      lastName: "Doe",
+      email: "johndoe@gmail.com",
+      phoneNumber: "1234567890",
+      pronouns: {
+        objective: "he/him",
+        subjective: "him",
+      },
+      age: 18,
+      role: "Attendee",
+
+      isAccepted: true,
+      isConfirmed: true,
+      isCheckedIn: true,
+      discord: "JohnDoe#1234",
+      userLink: "https://www.google.com",
+      school: "UCF",
+      oAuth: "Google",
+    });
+  }
+  return attendees;
+}
 
 export type Event = {
   name: string;
