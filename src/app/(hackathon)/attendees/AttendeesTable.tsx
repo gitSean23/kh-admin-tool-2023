@@ -9,6 +9,7 @@ import {
   useReactTable,
 } from "@tanstack/react-table";
 import { useState } from "react";
+import { AttendeeForm } from "./AttendeeForm";
 
 const data: Attendee[] = generateAttendees();
 
@@ -110,7 +111,7 @@ export function AttendeesTable() {
             {modal.attendee?.firstName} {modal.attendee?.lastName}
           </div>
         }
-        body={<div>Hello, World</div>}
+        body={<AttendeeForm attendee={modal.attendee} />}
       ></Modal>
       <div className="mt-6 overflow-auto whitespace-nowrap text-xl">
         <table className="w-full">
