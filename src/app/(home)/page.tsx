@@ -39,7 +39,7 @@ export default function Home() {
 
   const links = [
     { route: "/hackathon", buttonText: "Go to Hackathon" },
-    { route: "/hackers", buttonText: "Hackers" },
+    { route: "/attendees", buttonText: "Attendees" },
     { route: "/sponsors", buttonText: "Sponsors" },
     { route: "/schedule", buttonText: "Schedule" },
   ];

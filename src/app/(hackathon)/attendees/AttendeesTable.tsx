@@ -1,8 +1,8 @@
 "use client";
 
+import { Modal } from "@/lib/Modal";
 import { Attendee, generateAttendees } from "@/types";
 import {
-  CellContext,
   createColumnHelper,
   flexRender,
   getCoreRowModel,
@@ -14,24 +14,25 @@ const data: Attendee[] = generateAttendees();
 
 const columnHelper = createColumnHelper<Attendee>();
 
-function TableCheckbox({
-  cellContext,
-}: {
-  cellContext: CellContext<Attendee, boolean>;
-}) {
-  const [isChecked, setIsChecked] = useState(cellContext.getValue());
+// function TableCheckbox({
+//   cellContext,
+// }: {
+//   cellContext: CellContext<Attendee, boolean>;
+// }) {
+//   const [isChecked, setIsChecked] = useState(cellContext.getValue());
 
-  const onChange = () => {
-    setIsChecked(!isChecked);
-    console.log(
-      `Changing ${cellContext.column.id} to ${!isChecked} for hacker with id ${
-        cellContext.row.original.id
-      }`
-    );
-  };
+//   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
+//     e.stopPropagation();
+//     setIsChecked(!isChecked);
+//     console.log(
+//       `Changing ${
+//         cellContext.column.id
+//       } to ${!isChecked} for attendee with id ${cellContext.row.original.id}`
+//     );
+//   };
 
-  return <input type="checkbox" checked={isChecked} onChange={onChange} />;
-}
+//   return <input type="checkbox" checked={isChecked} onChange={onChange} />;
+// }
 
 const columns = [
   columnHelper.accessor((row) => `${row.firstName} ${row.lastName}`, {
@@ -61,30 +62,56 @@ const columns = [
   }),
   columnHelper.accessor("isAccepted", {
     header: "Accepted",
-    cell: (info) => <TableCheckbox cellContext={info} />,
+    cell: (info) => (
+      <input tabIndex={-1} readOnly checked={info.getValue()} type="checkbox" />
+    ),
     footer: "Accepted",
   }),
   columnHelper.accessor("isConfirmed", {
     header: "Confirmed",
-    cell: (info) => <TableCheckbox cellContext={info} />,
+    cell: (info) => (
+      <input tabIndex={-1} readOnly checked={info.getValue()} type="checkbox" />
+    ),
     footer: "Confirmed",
   }),
   columnHelper.accessor("isCheckedIn", {
     header: "Checked In",
-    cell: (info) => <TableCheckbox cellContext={info} />,
+    cell: (info) => (
+      <input tabIndex={-1} readOnly checked={info.getValue()} type="checkbox" />
+    ),
     footer: "Checked In",
   }),
 ];
 
-export function HackersTable() {
+export function AttendeesTable() {
   const table = useReactTable({
     data,
     columns,
     getCoreRowModel: getCoreRowModel(),
   });
 
+  const [modal, setModal] = useState<{
+    isOpen: boolean;
+    attendee: Attendee | null;
+  }>({
+    isOpen: false,
+    attendee: null,
+  });
+
   return (
-    <div>
+    <>
+      <Modal
+        isOpen={modal.isOpen}
+        setIsOpen={() =>
+          setModal((prev) => ({ ...prev, isOpen: !prev.isOpen }))
+        }
+        header={
+          <div>
+            {modal.attendee?.firstName} {modal.attendee?.lastName}
+          </div>
+        }
+        body={<div>Hello, World</div>}
+      ></Modal>
       <div className="mt-6 overflow-auto whitespace-nowrap text-xl">
         <table className="w-full">
           <thead>
@@ -107,8 +134,17 @@ export function HackersTable() {
             ))}
           </thead>
           <tbody>
-            {table.getRowModel().rows.map((row) => (
-              <tr key={row.id} className="border-b">
+            {table.getRowModel().rows.map((row, i) => (
+              <tr
+                onClick={() => {
+                  setModal({
+                    isOpen: true,
+                    attendee: row.original,
+                  });
+                }}
+                key={row.id}
+                className="cursor-pointer border-b hover:bg-gray-100"
+              >
                 {row.getVisibleCells().map((cell) => (
                   <td
                     key={cell.id}
@@ -141,6 +177,6 @@ export function HackersTable() {
           </tfoot>
         </table>
       </div>
-    </div>
+    </>
   );
 }

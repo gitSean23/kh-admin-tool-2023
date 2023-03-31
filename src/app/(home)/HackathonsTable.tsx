@@ -64,14 +64,7 @@ export function HackathonTable() {
           {table.getRowModel().rows.map((row, i) => (
             <tr
               onClick={() => router.push("/hackathon")}
-              onKeyDown={(e) => {
-                if (e.key === "Enter") {
-                  router.push("/hackathon");
-                }
-              }}
-              role="link"
               key={row.id}
-              tabIndex={i} /* Allow row to be focusable */
               className="cursor-pointer border-b hover:bg-gray-100"
             >
               {row.getVisibleCells().map((cell) => (
