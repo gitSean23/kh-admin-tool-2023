@@ -26,7 +26,13 @@ const columns = [
   }),
   columnHelper.accessor("since", {
     header: "Since",
+    cell: (info) => info.getValue(),
     footer: "Since",
+  }),
+  columnHelper.accessor("tier", {
+    header: "Tier",
+    cell: (info) => info.getValue(),
+    footer: "Tier",
   }),
   columnHelper.display({
     id: "amount",
