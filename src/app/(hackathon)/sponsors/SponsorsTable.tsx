@@ -1,70 +1,46 @@
 "use client";
 
 import { Modal } from "@/lib/Modal";
-import { Attendee, generateRandomAttendees } from "@/types";
+import { Sponsor, generateRandomSponsors, getAmountFromTier } from "@/types";
 import {
   createColumnHelper,
   flexRender,
   getCoreRowModel,
   useReactTable,
 } from "@tanstack/react-table";
+import Image from "next/image";
 import { useState } from "react";
-import { AttendeeForm } from "./AttendeeForm";
 
-const data: Attendee[] = generateRandomAttendees(10);
+const data: Sponsor[] = generateRandomSponsors(10);
 
-const columnHelper = createColumnHelper<Attendee>();
+const columnHelper = createColumnHelper<Sponsor>();
 
 const columns = [
-  columnHelper.accessor((row) => `${row.firstName} ${row.lastName}`, {
+  columnHelper.accessor("name", {
     header: "Name",
     cell: (info) => info.getValue(),
     footer: "Name",
   }),
-  columnHelper.accessor("email", {
-    header: "Email",
-    cell: (info) => info.getValue(),
-    footer: "Email",
-  }),
-  columnHelper.accessor("discord", {
-    header: "Discord",
-    cell: (info) => info.getValue(),
-    footer: "Discord",
-  }),
-  columnHelper.accessor("oAuth", {
-    header: "Auth",
-    cell: (info) => info.getValue(),
-    footer: "Auth",
-  }),
-  columnHelper.accessor("school", {
-    header: "School",
-    cell: (info) => info.getValue(),
-    footer: "School",
-  }),
-  columnHelper.accessor("isAccepted", {
-    header: "Accepted",
+  columnHelper.accessor("logo", {
+    header: "Logo",
     cell: (info) => (
-      <input tabIndex={-1} readOnly checked={info.getValue()} type="checkbox" />
+      <Image src="/vercel.svg" alt="vercel" height={100} width={100} />
     ),
-    footer: "Accepted",
+    footer: "Logo",
   }),
-  columnHelper.accessor("isConfirmed", {
-    header: "Confirmed",
-    cell: (info) => (
-      <input tabIndex={-1} readOnly checked={info.getValue()} type="checkbox" />
-    ),
-    footer: "Confirmed",
+  columnHelper.accessor("since", {
+    header: "Since",
+    footer: "Since",
   }),
-  columnHelper.accessor("isCheckedIn", {
-    header: "Checked In",
-    cell: (info) => (
-      <input tabIndex={-1} readOnly checked={info.getValue()} type="checkbox" />
-    ),
-    footer: "Checked In",
+  columnHelper.display({
+    id: "amount",
+    header: "Amount",
+    cell: (info) => getAmountFromTier(info.row.original.tier),
+    footer: "Amount",
   }),
 ];
 
-export function AttendeesTable() {
+export function SponsorsTable() {
   const table = useReactTable({
     data,
     columns,
@@ -73,10 +49,10 @@ export function AttendeesTable() {
 
   const [modal, setModal] = useState<{
     isOpen: boolean;
-    attendee: Attendee | null;
+    sponsor: Sponsor | null;
   }>({
     isOpen: false,
-    attendee: null,
+    sponsor: null,
   });
 
   return (
@@ -86,12 +62,8 @@ export function AttendeesTable() {
         setIsOpen={() =>
           setModal((prev) => ({ ...prev, isOpen: !prev.isOpen }))
         }
-        header={
-          <div>
-            {modal.attendee?.firstName} {modal.attendee?.lastName}
-          </div>
-        }
-        body={<AttendeeForm attendee={modal.attendee} />}
+        header={<div>{modal.sponsor?.name}</div>}
+        body={<></>}
       ></Modal>
       <div className="mt-6 overflow-auto whitespace-nowrap text-xl">
         <table className="w-full">
@@ -120,7 +92,7 @@ export function AttendeesTable() {
                 onClick={() => {
                   setModal({
                     isOpen: true,
-                    attendee: row.original,
+                    sponsor: row.original,
                   });
                 }}
                 key={row.id}

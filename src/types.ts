@@ -1,3 +1,5 @@
+import { faker } from "@faker-js/faker";
+
 export type Attendee = {
   id: string;
   firstName: string;
@@ -17,30 +19,28 @@ export type Attendee = {
 };
 
 // Generate dummy attendees
-
-export function generateAttendees(): Attendee[] {
+export function generateRandomAttendees(length: number): Attendee[] {
   let attendees: Attendee[] = [];
-  for (let i = 0; i < 10; i++) {
+  for (let i = 0; i < length; i++) {
     attendees.push({
-      id: (i + 1).toString(),
-      firstName: "John",
-      lastName: "Doe",
-      email: "johndoe@gmail.com",
-      phoneNumber: "1234567890",
+      id: faker.datatype.uuid(),
+      firstName: faker.name.firstName(),
+      lastName: faker.name.lastName(),
+      email: faker.internet.email(),
+      phoneNumber: faker.phone.number(),
       pronouns: {
-        objective: "he/him",
-        subjective: "him",
+        objective: faker.word.noun(),
+        subjective: faker.word.noun(),
       },
-      age: 18,
-      role: "Attendee",
-
-      isAccepted: true,
-      isConfirmed: true,
-      isCheckedIn: true,
-      discord: "JohnDoe#1234",
-      userLink: "https://www.google.com",
-      school: "UCF",
-      oAuth: "Google",
+      age: faker.datatype.number(100),
+      role: faker.name.jobTitle(),
+      oAuth: faker.word.noun(),
+      isAccepted: false,
+      isConfirmed: false,
+      isCheckedIn: false,
+      discord: faker.internet.userName(),
+      userLink: faker.internet.url(),
+      school: faker.company.name(),
     });
   }
   return attendees;
@@ -100,7 +100,7 @@ export function isValidTier(value: string) {
   return tiers.includes(value);
 }
 
-export function getAmount(tier: string) {
+export function getAmountFromTier(tier: string) {
   switch (tier) {
     case "Bronze":
       return 3000;
@@ -113,6 +113,23 @@ export function getAmount(tier: string) {
     default:
       return 0;
   }
+}
+
+export function generateRandomSponsors(length: number) {
+  let sponsors: Sponsor[] = [];
+  for (let i = 0; i < length; i++) {
+    sponsors.push({
+      name: faker.company.name(),
+      description: faker.lorem.paragraph(),
+      hackathons: [],
+      id: faker.datatype.uuid(),
+      logo: faker.image.imageUrl(),
+      since: new Date(),
+      tier: faker.helpers.arrayElement(tiers),
+      website: faker.internet.url(),
+    });
+  }
+  return sponsors;
 }
 
 export type Hackathon = {
