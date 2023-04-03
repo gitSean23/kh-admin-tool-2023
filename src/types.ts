@@ -49,12 +49,28 @@ export function generateRandomAttendees(length: number): Attendee[] {
 export type Event = {
   name: string;
   description: string;
-  start_date: Date;
-  end_date: Date;
+  start_date: Date | string;
+  end_date: Date | string;
   hackathon: Hackathon;
   id: string;
   location: string;
 };
+
+export function generateRandomEvents(length: number): Event[] {
+  let events: Event[] = [];
+  for (let i = 0; i < length; i++) {
+    events.push({
+      name: faker.lorem.sentence(),
+      description: faker.lorem.paragraph(),
+      start_date: new Date(),
+      end_date: new Date(new Date().getTime() + 1000 * 60 * 60 * 24),
+      hackathon: dummyHackathonData[0],
+      id: faker.datatype.uuid(),
+      location: faker.address.streetAddress(),
+    });
+  }
+  return events;
+}
 
 export type User = {
   age?: number;
@@ -115,7 +131,7 @@ export function getAmountFromTier(tier: string) {
   }
 }
 
-export function generateRandomSponsors(length: number) {
+export function generateRandomSponsors(length: number): Sponsor[] {
   let sponsors: Sponsor[] = [];
   for (let i = 0; i < length; i++) {
     sponsors.push({

@@ -1,7 +1,7 @@
 "use client";
 
 import { Modal } from "@/lib/Modal";
-import { Sponsor, generateRandomSponsors, getAmountFromTier } from "@/types";
+import { Sponsor, getAmountFromTier } from "@/types";
 import {
   createColumnHelper,
   flexRender,
@@ -10,8 +10,6 @@ import {
 } from "@tanstack/react-table";
 import { useState } from "react";
 import { SponsorForm } from "./SponsorForm";
-
-const data: Sponsor[] = generateRandomSponsors(5);
 
 const columnHelper = createColumnHelper<Sponsor>();
 
@@ -38,7 +36,7 @@ const columns = [
   }),
 ];
 
-export function SponsorsTable() {
+export function SponsorsTable({ data }: { data: Sponsor[] }) {
   const table = useReactTable({
     data,
     columns,

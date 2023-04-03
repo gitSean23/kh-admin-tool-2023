@@ -1,7 +1,7 @@
 "use client";
 
 import { Modal } from "@/lib/Modal";
-import { Attendee } from "@/types";
+import { Event } from "@/types";
 import {
   createColumnHelper,
   flexRender,
@@ -9,60 +9,28 @@ import {
   useReactTable,
 } from "@tanstack/react-table";
 import { useState } from "react";
-import { AttendeeForm } from "./AttendeeForm";
 
-const columnHelper = createColumnHelper<Attendee>();
+const columnHelper = createColumnHelper<Event>();
 
 const columns = [
-  columnHelper.accessor((row) => `${row.firstName} ${row.lastName}`, {
+  columnHelper.accessor((row) => `${row.start_date} - ${row.end_date}`, {
+    header: "Time",
+    cell: (info) => info.getValue(),
+    footer: "Time",
+  }),
+  columnHelper.accessor("name", {
     header: "Name",
     cell: (info) => info.getValue(),
     footer: "Name",
   }),
-  columnHelper.accessor("email", {
-    header: "Email",
+  columnHelper.accessor("location", {
+    header: "Location",
     cell: (info) => info.getValue(),
-    footer: "Email",
-  }),
-  columnHelper.accessor("discord", {
-    header: "Discord",
-    cell: (info) => info.getValue(),
-    footer: "Discord",
-  }),
-  columnHelper.accessor("oAuth", {
-    header: "Auth",
-    cell: (info) => info.getValue(),
-    footer: "Auth",
-  }),
-  columnHelper.accessor("school", {
-    header: "School",
-    cell: (info) => info.getValue(),
-    footer: "School",
-  }),
-  columnHelper.accessor("isAccepted", {
-    header: "Accepted",
-    cell: (info) => (
-      <input tabIndex={-1} readOnly checked={info.getValue()} type="checkbox" />
-    ),
-    footer: "Accepted",
-  }),
-  columnHelper.accessor("isConfirmed", {
-    header: "Confirmed",
-    cell: (info) => (
-      <input tabIndex={-1} readOnly checked={info.getValue()} type="checkbox" />
-    ),
-    footer: "Confirmed",
-  }),
-  columnHelper.accessor("isCheckedIn", {
-    header: "Checked In",
-    cell: (info) => (
-      <input tabIndex={-1} readOnly checked={info.getValue()} type="checkbox" />
-    ),
-    footer: "Checked In",
+    footer: "Location",
   }),
 ];
 
-export function AttendeesTable({ data }: { data: Attendee[] }) {
+export function EventsTable({ data }: { data: Event[] }) {
   const table = useReactTable({
     data,
     columns,
@@ -71,10 +39,10 @@ export function AttendeesTable({ data }: { data: Attendee[] }) {
 
   const [modal, setModal] = useState<{
     isOpen: boolean;
-    attendee: Attendee | null;
+    sponsor: Event | null;
   }>({
     isOpen: false,
-    attendee: null,
+    sponsor: null,
   });
 
   return (
@@ -84,12 +52,8 @@ export function AttendeesTable({ data }: { data: Attendee[] }) {
         setIsOpen={() =>
           setModal((prev) => ({ ...prev, isOpen: !prev.isOpen }))
         }
-        header={
-          <div>
-            {modal.attendee?.firstName} {modal.attendee?.lastName}
-          </div>
-        }
-        body={<AttendeeForm attendee={modal.attendee} />}
+        header={<div>{modal.sponsor?.name}</div>}
+        body={<></>}
       ></Modal>
       <div className="mt-6 overflow-auto whitespace-nowrap text-xl">
         <table className="w-full">
@@ -118,7 +82,7 @@ export function AttendeesTable({ data }: { data: Attendee[] }) {
                 onClick={() => {
                   setModal({
                     isOpen: true,
-                    attendee: row.original,
+                    sponsor: row.original,
                   });
                 }}
                 key={row.id}
