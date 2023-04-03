@@ -9,6 +9,7 @@ import {
   useReactTable,
 } from "@tanstack/react-table";
 import { useState } from "react";
+import { EventForm } from "./EventForm";
 
 const columnHelper = createColumnHelper<Event>();
 
@@ -53,7 +54,7 @@ export function EventsTable({ data }: { data: Event[] }) {
           setModal((prev) => ({ ...prev, isOpen: !prev.isOpen }))
         }
         header={<div>{modal.sponsor?.name}</div>}
-        body={<></>}
+        body={<EventForm />}
       ></Modal>
       <div className="mt-6 overflow-auto whitespace-nowrap text-xl">
         <table className="w-full">

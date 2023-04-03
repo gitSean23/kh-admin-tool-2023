@@ -61,14 +61,17 @@ export function Modal({ isOpen, setIsOpen, header, body }: ModalProps) {
               <Dialog.Panel className="w-full max-w-lg transform overflow-hidden rounded-xl bg-white  text-left align-middle shadow-xl transition-all">
                 <Dialog.Title
                   as="div"
-                  className="flex items-center border-b p-5 text-lg font-medium leading-6 text-gray-900"
+                  className="flex items-center border-b p-5 text-lg font-medium  text-gray-900   "
                 >
-                  <button
-                    onClick={() => setIsOpen(false)}
-                    className="mr-4 flex h-8 w-8 items-center justify-center rounded-full bg-gray-200 "
-                  >
-                    <CloseIcon />
-                  </button>
+                  <div>
+                    <button
+                      onClick={() => setIsOpen(false)}
+                      className="mr-4 flex h-8 w-8 items-center justify-center rounded-full bg-gray-200 "
+                    >
+                      <CloseIcon />
+                    </button>
+                  </div>
+
                   {header}
                 </Dialog.Title>
                 <div className="p-5">{body}</div>
