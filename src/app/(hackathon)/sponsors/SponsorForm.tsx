@@ -1,67 +1,61 @@
-import { Attendee } from "@/types";
+import { Sponsor, tiers } from "@/types";
 import { SubmitHandler, useForm } from "react-hook-form";
 
-export function AttendeeForm({ attendee }: { attendee: Attendee | null }) {
-  const { register, handleSubmit } = useForm<Attendee>();
-  const onSubmit: SubmitHandler<Attendee> = (data) => {
+export function SponsorForm({ sponsor }: { sponsor?: Sponsor | null }) {
+  const { register, handleSubmit } = useForm<Sponsor>();
+  const onSubmit: SubmitHandler<Sponsor> = (data) => {
     console.log(data);
   };
-
-  // create state to check if the form has been editted
-  // if it has, then show the confirm changes button
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className="mb-4 flex flex-col">
-        <label className="mb-1" htmlFor="firstName">
-          First Name
+        <label className="mb-1" htmlFor="name">
+          Name
         </label>
         <input
           className="rounded border px-3 py-2"
-          id="firstName"
-          value={attendee?.firstName}
-          {...register("firstName", { value: attendee?.firstName })}
+          id="name"
+          value={sponsor?.name}
+          {...register("name", { value: sponsor?.name })}
         />
       </div>
       <div className="mb-4 flex flex-col">
-        <label className="mb-1" htmlFor="lastName">
-          Last Name
+        <label className="mb-1" htmlFor="description">
+          Description
+        </label>
+        <textarea
+          className="rounded border px-3 py-2"
+          id="description"
+          {...register("description", { value: sponsor?.description })}
+        ></textarea>
+      </div>
+      <div className="mb-4 flex flex-col">
+        <label className="mb-1" htmlFor="startDate">
+          Start Date
         </label>
         <input
           className="rounded border px-3 py-2"
-          id="lastName"
-          {...register("lastName", { value: attendee?.lastName })}
+          type="date"
+          id="startDate"
+          {...register("since", { value: sponsor?.since, valueAsDate: true })}
         />
       </div>
       <div className="mb-4 flex flex-col">
-        <label className="mb-1" htmlFor="email">
-          Email
-        </label>
-        <input
-          className="rounded border px-3 py-2"
-          id="email"
-          {...register("email", { value: attendee?.email })}
-        />
-      </div>
-      <div className="mb-4 flex flex-col">
-        <label className="mb-1" htmlFor="discord">
-          Discord
-        </label>
-        <input
-          className="rounded border px-3 py-2"
-          id="discord"
-          {...register("discord", { value: attendee?.discord })}
-        />
-      </div>
-      <div className="mb-4 flex flex-col">
-        <label className="mb-1" htmlFor="school">
+        <label className="mb-1" htmlFor="tier">
           School
         </label>
-        <input
+        <select
           className="rounded border px-3 py-2"
-          id="school"
-          {...register("school", { value: attendee?.school })}
-        />
+          id="tier"
+          {...register("tier", { value: sponsor?.tier })}
+        >
+          {tiers.map((tier) => (
+            <option key={tier} value={tier}>
+              {tier}
+            </option>
+          ))}
+        </select>
       </div>
       <button className="mt-4 flex h-11 w-full items-center justify-center gap-2 whitespace-nowrap rounded-lg border bg-[#fbfbfb] px-5 font-bold text-[#4b4b4b]">
         Confirm Changes

@@ -8,10 +8,10 @@ import {
   getCoreRowModel,
   useReactTable,
 } from "@tanstack/react-table";
-import Image from "next/image";
 import { useState } from "react";
+import { SponsorForm } from "./SponsorForm";
 
-const data: Sponsor[] = generateRandomSponsors(10);
+const data: Sponsor[] = generateRandomSponsors(5);
 
 const columnHelper = createColumnHelper<Sponsor>();
 
@@ -23,9 +23,7 @@ const columns = [
   }),
   columnHelper.accessor("logo", {
     header: "Logo",
-    cell: (info) => (
-      <Image src="/vercel.svg" alt="vercel" height={100} width={100} />
-    ),
+    cell: (info) => info.getValue(),
     footer: "Logo",
   }),
   columnHelper.accessor("since", {
@@ -63,7 +61,7 @@ export function SponsorsTable() {
           setModal((prev) => ({ ...prev, isOpen: !prev.isOpen }))
         }
         header={<div>{modal.sponsor?.name}</div>}
-        body={<></>}
+        body={<SponsorForm sponsor={modal?.sponsor} />}
       ></Modal>
       <div className="mt-6 overflow-auto whitespace-nowrap text-xl">
         <table className="w-full">

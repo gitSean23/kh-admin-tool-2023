@@ -11,7 +11,7 @@ import {
 import { useState } from "react";
 import { AttendeeForm } from "./AttendeeForm";
 
-const data: Attendee[] = generateRandomAttendees(10);
+const data: Attendee[] = generateRandomAttendees(5);
 
 const columnHelper = createColumnHelper<Attendee>();
 

@@ -1,14 +1,11 @@
 import { Attendee } from "@/types";
 import { SubmitHandler, useForm } from "react-hook-form";
 
-export function AttendeeForm({ attendee }: { attendee: Attendee | null }) {
+export function AttendeeForm({ attendee }: { attendee?: Attendee | null }) {
   const { register, handleSubmit } = useForm<Attendee>();
   const onSubmit: SubmitHandler<Attendee> = (data) => {
     console.log(data);
   };
-
-  // create state to check if the form has been editted
-  // if it has, then show the confirm changes button
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
