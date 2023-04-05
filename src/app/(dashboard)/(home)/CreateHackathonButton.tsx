@@ -19,7 +19,7 @@ export function CreateHackathonIcon() {
 
 export function CreateHackathonButton() {
   return (
-    <button className="flex h-11 items-center gap-2 whitespace-nowrap rounded-lg border bg-[#fbfbfb] px-5 font-bold text-[#4b4b4b]">
+    <button  className="flex h-11 items-center gap-2 whitespace-nowrap rounded-lg border bg-[#fbfbfb] px-5 font-bold text-[#4b4b4b]">
       <CreateHackathonIcon />
       Create Hackathon
     </button>

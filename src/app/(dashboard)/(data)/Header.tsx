@@ -1,8 +1,8 @@
 import Link from "next/link";
 
-export function InfoHeader() {
+export function Header() {
   return (
-    <div className="flex h-36 items-center justify-between border-b bg-[#fbfbfb] px-10 whitespace-nowrap">
+    <div className="flex h-36 items-center justify-between whitespace-nowrap border-b bg-[#fbfbfb] px-10">
       <div>
         <div className="text-3xl font-bold text-[#4b4b4b]">Fall 2022</div>
         <div className="text-xl font-medium text-[#8d8d8d]">March 25-26</div>
