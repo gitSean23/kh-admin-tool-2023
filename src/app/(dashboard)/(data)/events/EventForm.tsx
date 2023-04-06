@@ -39,7 +39,7 @@ export function EventForm({ event }: { event?: Event | null }) {
           className="rounded border px-3 py-2"
           id="location"
           value={event?.location}
-          {...register("name", { value: event?.location })}
+          {...register("location", { value: event?.location })}
         />
       </div>
       <div className="mb-4 flex flex-col">
@@ -51,7 +51,7 @@ export function EventForm({ event }: { event?: Event | null }) {
           id="startTime"
           type="date"
           value={event?.name}
-          {...register("name", { value: event?.name })}
+          {...register("start_date", { value: event?.start_date })}
         />
       </div>
       <div className="mb-4 flex flex-col">
@@ -63,7 +63,7 @@ export function EventForm({ event }: { event?: Event | null }) {
           id="endTime"
           type="date"
           value={event?.name}
-          {...register("name", { value: event?.name })}
+          {...register("end_date", { value: event?.end_date })}
         />
       </div>
       <button className="mt-4 flex h-11 w-full items-center justify-center gap-2 whitespace-nowrap rounded-lg border bg-[#fbfbfb] px-5 font-bold text-[#4b4b4b]">

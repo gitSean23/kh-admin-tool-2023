@@ -40,10 +40,10 @@ export function EventsTable({ data }: { data: Event[] }) {
 
   const [modal, setModal] = useState<{
     isOpen: boolean;
-    sponsor: Event | null;
+    event: Event | null;
   }>({
     isOpen: false,
-    sponsor: null,
+    event: null,
   });
 
   return (
@@ -53,8 +53,8 @@ export function EventsTable({ data }: { data: Event[] }) {
         setIsOpen={() =>
           setModal((prev) => ({ ...prev, isOpen: !prev.isOpen }))
         }
-        header={<div>{modal.sponsor?.name}</div>}
-        body={<EventForm />}
+        header={<div>{modal.event?.name}</div>}
+        body={<EventForm event={modal.event} />}
       ></Modal>
       <div className="mt-6 overflow-auto whitespace-nowrap text-xl">
         <table className="w-full">
@@ -83,7 +83,7 @@ export function EventsTable({ data }: { data: Event[] }) {
                 onClick={() => {
                   setModal({
                     isOpen: true,
-                    sponsor: row.original,
+                    event: row.original,
                   });
                 }}
                 key={row.id}
