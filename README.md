@@ -1,38 +1,29 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 2023 KnightHacks Admin Tool
+
+This is the new repo for KnightHacks' administration tool built in Next.js with the app directory. It is to be used by our hackathon organizers to manage the data of all hackathons hosted by KnightHacks.
+
+## Installation
+
+```shell
+git clone git@github.com:KnightHacks/admin-tool-2023.git
+cd admin-tool-2023
+npm i
+```
+
+Before going any further, you will need to add an .env.local file at the root of your directory containing the following contents:
+
+```env
+API_ENDPOINT= # https://api-dev.knighthacks.org/ or http://localhost:4000/
+```
 
 ## Getting Started
 
-First, run the development server:
+To run a live development server, run the following script in a terminal:
 
-```bash
+```shell
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+This will host the admin tool locally at <http://localhost:3000/> by default. As you make updates to the code, they should be reflected automatically on the page
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Learn more about the Next.js app directory here <https://beta.nextjs.org/docs/app-directory-roadmap>
