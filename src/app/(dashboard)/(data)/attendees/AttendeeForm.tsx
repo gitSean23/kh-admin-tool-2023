@@ -7,6 +7,8 @@ export function AttendeeForm({ attendee }: { attendee?: Attendee | null }) {
     console.log(data);
   };
 
+  // TODO: Add functions to handle admit, check in and confirm
+
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className="mb-4 flex flex-col">
@@ -60,7 +62,30 @@ export function AttendeeForm({ attendee }: { attendee?: Attendee | null }) {
           {...register("school", { value: attendee?.school })}
         />
       </div>
-      <button className="mt-4 flex h-11 w-full items-center justify-center gap-2 whitespace-nowrap rounded-lg border bg-[#fbfbfb] px-5 font-bold text-[#4b4b4b]">
+      <div className="mb-4 flex gap-2">
+        <button
+          type="button"
+          className="rounded border border-[#444444] bg-[#444444] px-3 py-1.5 font-bold text-white"
+        >
+          Admit
+        </button>
+        <button
+          type="button"
+          className="rounded border border-[#444444] bg-[#444444] px-3 py-1.5 font-bold text-white"
+        >
+          Check In
+        </button>
+        <button
+          type="button"
+          className="rounded border border-red-500 bg-red-500 px-3 py-1.5 font-bold text-white"
+        >
+          Delete
+        </button>
+      </div>
+      <button
+        type="submit"
+        className="flex h-11 w-full items-center justify-center gap-2 whitespace-nowrap rounded border bg-[#fbfbfb] px-5 font-bold text-[#4b4b4b]"
+      >
         Confirm Changes
       </button>
     </form>

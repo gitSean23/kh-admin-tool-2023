@@ -13,7 +13,7 @@ export function Navbar() {
       </a>
       <Menu as="div">
         <Menu.Button className="flex h-10 w-10 items-center">
-          <UserCircleIcon className="" aria-hidden="true" />
+          <UserCircleIcon aria-hidden="true" />
         </Menu.Button>
         <Transition
           as={Fragment}

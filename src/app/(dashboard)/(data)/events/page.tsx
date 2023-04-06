@@ -4,6 +4,8 @@ import { EventsTable } from "./EventsTable";
 export default function Events() {
   let data = generateRandomEvents(10);
 
+  // We can only pass flat objects when passing data from server to client components
+  // So we need to convert the dates to strings 
   let events = data.map((event) => ({
     ...event,
     start_date: new Date(event.start_date).toLocaleTimeString(),
