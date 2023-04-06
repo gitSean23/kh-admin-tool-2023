@@ -3,6 +3,8 @@ import { GitHub } from "./GitHub";
 import { Google } from "./Google";
 
 export default function Login() {
+  // TODO: Check if user is logged in
+
   return (
     <div className="flex min-h-screen flex-col items-center bg-[#fbfbfb] pt-20">
       <div className="mb-12 flex items-center gap-4 text-5xl font-extrabold text-[#DBBF4A]">

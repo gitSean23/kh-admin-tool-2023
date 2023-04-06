@@ -5,6 +5,9 @@ export default function DashboardLayout({
 }: {
   children: React.ReactNode;
 }) {
+  // TODO: Check if user is logged in
+  
+
   return (
     <>
       <Navbar />
