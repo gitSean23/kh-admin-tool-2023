@@ -183,3 +183,5 @@ export let dummyHackathonData: Hackathon[] = [
     },
   },
 ];
+
+export type AuthProvider = "Google" | "GitHub";
