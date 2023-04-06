@@ -38,10 +38,10 @@ export default function Home() {
   let username = "John Doe";
 
   const links = [
-    { route: "/hackathon", buttonText: "Go to Hackathon" },
+    { route: "/hackathon", buttonText: "Hackathon" },
     { route: "/attendees", buttonText: "Attendees" },
     { route: "/sponsors", buttonText: "Sponsors" },
-    { route: "/schedule", buttonText: "Schedule" },
+    { route: "/events", buttonText: "Schedule" },
   ];
 
   return (
@@ -54,7 +54,7 @@ export default function Home() {
         </div>
 
         <Link
-          href="/analytics"
+          href="/hackathon"
           className="flex h-11 items-center gap-2 whitespace-nowrap rounded-lg border bg-[#fbfbfb] px-5 font-bold text-[#4b4b4b]"
         >
           <HackathonAnalyticsIcon />
