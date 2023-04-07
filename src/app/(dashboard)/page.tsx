@@ -46,16 +46,18 @@ export default function Home() {
 
   return (
     <div className="mx-10 mt-14">
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col md:flex-row md:items-center md:justify-between">
         <div className="flex items-center">
           {/* Profile goes here */}
           <div />
-          <div className="text-4xl font-bold">Welcome, {username}.</div>
+          <div className="mb-2 text-4xl font-bold md:mb-0">
+            Welcome, {username}.
+          </div>
         </div>
 
         <Link
           href="/hackathon"
-          className="flex h-11 items-center gap-2 whitespace-nowrap rounded-lg border bg-[#fbfbfb] px-5 font-bold text-[#4b4b4b]"
+          className="flex h-11 items-center gap-2 self-start whitespace-nowrap rounded-lg border bg-[#fbfbfb] px-5 font-bold text-[#4b4b4b]"
         >
           <HackathonAnalyticsIcon />
           <div>Hackathon Analytics</div>
@@ -81,9 +83,9 @@ export default function Home() {
           ))}
         </div>
       </div>
-            
-      <div className="mt-7 flex items-center justify-between">
-        <div className="text-2xl font-semibold text-[#a4a4a4]">
+
+      <div className="mt-7 flex flex-col justify-between md:flex-row md:items-center">
+        <div className="mb-2 text-2xl font-semibold text-[#a4a4a4] md:mb-0">
           Recent Hackathons
         </div>
         <CreateHackathonButton />
