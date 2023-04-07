@@ -1,6 +1,6 @@
 "use client";
 
-import { GET_AUTH_LINK } from "@/lib/gql";
+import { GET_AUTH_LINK, client } from "@/lib/gql";
 import { useLazyQuery } from "@apollo/client";
 
 export function GitHub() {
@@ -9,6 +9,7 @@ export function GitHub() {
       provider: "GITHUB",
       redirect: process.env.REACT_APP_OAUTH_AUTH_REDIRECT,
     },
+    client: client,
   });
 
   return (

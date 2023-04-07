@@ -1,4 +1,6 @@
-import { Navbar } from "@/lib/Navbar";
+import { Navbar } from "@/app/Navbar";
+import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 
 export default function DashboardLayout({
   children,
@@ -6,6 +8,11 @@ export default function DashboardLayout({
   children: React.ReactNode;
 }) {
   // TODO: Check if user is logged in
+  const hasToken = cookies().has("token") || true;
+
+  if (!hasToken) {
+    redirect("/login");
+  }
 
   return (
     <>

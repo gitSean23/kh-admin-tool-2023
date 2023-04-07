@@ -1,18 +1,19 @@
 "use client";
 
+import KHLogo from "@/assets/KHLogo.svg";
 import { Menu, Transition } from "@headlessui/react";
 import { UserCircleIcon } from "@heroicons/react/20/solid";
+import Image from "next/image";
 import { Fragment } from "react";
-import { KHLogo } from "./KHLogo";
 
 export function Navbar() {
   return (
     <div className="flex items-center justify-between border-b py-4 px-6">
       <a href="/">
-        <KHLogo />
+        <Image src={KHLogo} alt="KnightHacks" width={35} height={34} />
       </a>
       <Menu as="div">
-        <Menu.Button className="flex h-10 w-10 items-center">
+        <Menu.Button className="flex h-10 w-10 items-center" aria-label="User">
           <UserCircleIcon aria-hidden="true" />
         </Menu.Button>
         <Transition

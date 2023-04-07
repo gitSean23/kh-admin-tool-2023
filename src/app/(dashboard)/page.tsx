@@ -81,15 +81,13 @@ export default function Home() {
           ))}
         </div>
       </div>
-
+            
       <div className="mt-7 flex items-center justify-between">
         <div className="text-2xl font-semibold text-[#a4a4a4]">
           Recent Hackathons
         </div>
         <CreateHackathonButton />
       </div>
-
-      {/* Table Component */}
       <HackathonTable />
     </div>
   );
