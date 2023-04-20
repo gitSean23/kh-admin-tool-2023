@@ -2,8 +2,8 @@ import Link from "next/link";
 
 export function Header() {
   return (
-    <div className="flex h-36 items-center justify-between whitespace-nowrap border-b bg-[#fbfbfb] px-10">
-      <div>
+    <div className="flex flex-col justify-between whitespace-nowrap border-b bg-[#fbfbfb] py-4 px-10 lg:flex-row lg:items-center">
+      <div className="mb-4 lg:mb-0">
         <div className="text-3xl font-bold text-[#4b4b4b]">Fall 2022</div>
         <div className="text-xl font-semibold text-[#8d8d8d]">March 25-26</div>
       </div>
