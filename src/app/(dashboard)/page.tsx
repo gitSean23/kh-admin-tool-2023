@@ -1,10 +1,19 @@
+"use client"
 import Link from "next/link";
 import { CreateHackathonButton } from "./CreateHackathonButton";
 import { HackathonTable } from "./HackathonsTable";
+import Hackathon from "./(data)/hackathon/page";
+import { ApolloClient, InMemoryCache, ApolloProvider} from "@apollo/client";
+import Head from "next/head"
 
-export const metadata = {
-  title: "Home",
-};
+const client = new ApolloClient({
+  uri: 'http://localhost:4000/',
+  cache: new InMemoryCache()
+})
+
+// export const metadata = {
+//   title: "Home",
+// };
 
 function HackathonAnalyticsIcon() {
   return (
@@ -63,6 +72,9 @@ export default function Home() {
           <div>Hackathon Analytics</div>
         </Link>
       </div>
+      <div>
+        <Head><title>Home</title></Head>
+      </div>
 
       <div className="mt-7 text-2xl font-semibold text-[#a4a4a4]">
         Upcoming Hackathon
@@ -91,6 +103,9 @@ export default function Home() {
         <CreateHackathonButton />
       </div>
       <HackathonTable />
+      <ApolloProvider client={client}>
+        <Hackathon/>
+      </ApolloProvider>
     </div>
   );
 }
